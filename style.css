@@ -1,0 +1,183 @@
+/* =========================================
+   1. VARIABILI: i colori li cambi tutti da qui
+   ========================================= */
+:root {
+  --bg: #0b0b1a;                         /* sfondo scuro */
+  --text: #f2f2f7;                       /* testo principale */
+  --text-soft: #a9a9c2;                  /* testo secondario (bio) */
+  --accent: #7c5cff;                     /* colore principale (viola) */
+  --btn-bg: rgba(255, 255, 255, 0.08);   /* pulsante semi-trasparente */
+  --btn-border: rgba(255, 255, 255, 0.15);
+  --radius: 999px;                       /* bordi "a pillola" */
+}
+
+/* =========================================
+   2. RESET: tolgo i margini di default del browser
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;   /* padding e bordo inclusi nella larghezza */
+}
+
+/* =========================================
+   3. PAGINA
+   ========================================= */
+body {
+  min-height: 100vh;        /* almeno alta quanto lo schermo */
+  min-height: 100dvh;       /* versione corretta per i telefoni (barra del browser) */
+  display: flex;            /* flexbox per centrare */
+  justify-content: center;  /* centro orizzontale */
+  align-items: center;      /* centro verticale */
+  padding: 40px 16px;       /* respiro ai bordi, soprattutto su mobile */
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* =========================================
+   4. CARD: la colonna centrale
+   ========================================= */
+.card {
+  width: 100%;
+  max-width: 420px;          /* su PC non si allarga troppo */
+  display: flex;
+  flex-direction: column;    /* elementi uno sotto l'altro */
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================================
+   5. AVATAR ROTONDO
+   ========================================= */
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;          /* cerchio */
+  object-fit: cover;           /* riempie il cerchio senza deformare la foto */
+  object-position: center 30%; /* sposta l'inquadratura verso il viso */
+  border: 3px solid var(--accent);
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.bio {
+  color: var(--text-soft);
+  margin: 6px 0 28px;
+}
+
+/* =========================================
+   6. LISTA DEI PULSANTI
+   ========================================= */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;                 /* spazio tra un pulsante e l'altro */
+}
+
+.btn {
+  display: block;
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--text);
+  text-decoration: none;     /* tolgo la sottolineatura dei link */
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s;  /* rende morbidi i cambi */
+}
+
+/* Hover SOLO sui dispositivi con mouse: niente doppio tap su iPhone */
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+/* Feedback al tocco/click: vale ovunque */
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Navigazione da tastiera: contorno visibile */
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   7. SFONDO ANIMATO
+   ========================================= */
+.bg {
+  position: fixed;     /* resta fermo anche se scrolli */
+  inset: 0;            /* = top/right/bottom/left 0: copre tutto lo schermo */
+  z-index: -1;         /* sta DIETRO a tutto il resto */
+  overflow: hidden;    /* i blob che escono dai bordi non creano scrollbar */
+}
+
+.blob {
+  position: absolute;
+  width: 60vmax;       /* vmax = % del lato più lungo dello schermo */
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(80px);  /* la sfocatura li rende "luci" */
+  opacity: 0.55;
+  animation: float 20s ease-in-out infinite alternate;
+}
+
+/* Ogni blob ha colore, posizione e tempi diversi */
+.blob:nth-child(1) {
+  background: #7c5cff;        /* viola */
+  top: -20%;
+  left: -20%;
+}
+
+.blob:nth-child(2) {
+  background: #ff4ecd;        /* rosa */
+  bottom: -25%;
+  right: -20%;
+  animation-duration: 25s;
+  animation-delay: -5s;       /* delay negativo = parte già "a metà" */
+}
+
+.blob:nth-child(3) {
+  background: #00c2ff;        /* azzurro */
+  top: 40%;
+  left: 30%;
+  width: 40vmax;
+  height: 40vmax;
+  animation-duration: 30s;
+  animation-delay: -10s;
+}
+
+/* Il movimento: da una posizione all'altra, avanti e indietro */
+@keyframes float {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(10vw, 15vh) scale(1.15); }
+  100% { transform: translate(-10vw, 5vh) scale(0.9); }
+}
+
+/* =========================================
+   8. EFFETTO VETRO SUI PULSANTI
+   ========================================= */
+.btn {
+  backdrop-filter: blur(12px);          /* sfoca ciò che c'è dietro */
+  -webkit-backdrop-filter: blur(12px);  /* per Safari/iPhone */
+}
+
+/* =========================================
+   9. ACCESSIBILITÀ: chi ha disattivato le animazioni
+      nel sistema operativo non le vede
+   ========================================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
