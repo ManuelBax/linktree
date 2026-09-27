@@ -115,23 +115,22 @@ h1 {
    7. SFONDO ANIMATO
    ========================================= */
 .bg {
-  position: fixed;     /* resta fermo anche se scrolli */
-  inset: 0;            /* = top/right/bottom/left 0: copre tutto lo schermo */
-  z-index: -1;         /* sta DIETRO a tutto il resto */
-  overflow: hidden;    /* i blob che escono dai bordi non creano scrollbar */
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .blob {
   position: absolute;
-  width: 60vmax;       /* vmax = % del lato più lungo dello schermo */
+  width: 60vmax;
   height: 60vmax;
   border-radius: 50%;
-  filter: blur(80px);  /* la sfocatura li rende "luci" */
+  filter: blur(80px);
   opacity: 0.55;
-  animation: float 20s ease-in-out infinite alternate;
+  animation: float 10s ease-in-out infinite alternate;
 }
 
-/* Ogni blob ha colore, posizione e tempi diversi */
 .blob:nth-child(1) {
   background: #7c5cff;        /* viola */
   top: -20%;
@@ -142,8 +141,8 @@ h1 {
   background: #ff4ecd;        /* rosa */
   bottom: -25%;
   right: -20%;
-  animation-duration: 25s;
-  animation-delay: -5s;       /* delay negativo = parte già "a metà" */
+  animation-duration: 12s;
+  animation-delay: -3s;
 }
 
 .blob:nth-child(3) {
@@ -152,15 +151,14 @@ h1 {
   left: 30%;
   width: 40vmax;
   height: 40vmax;
-  animation-duration: 30s;
-  animation-delay: -10s;
+  animation-duration: 15s;
+  animation-delay: -6s;
 }
 
-/* Il movimento: da una posizione all'altra, avanti e indietro */
 @keyframes float {
   0%   { transform: translate(0, 0) scale(1); }
-  50%  { transform: translate(10vw, 15vh) scale(1.15); }
-  100% { transform: translate(-10vw, 5vh) scale(0.9); }
+  50%  { transform: translate(20vw, 25vh) scale(1.2); }
+  100% { transform: translate(-20vw, 10vh) scale(0.85); }
 }
 
 /* =========================================
