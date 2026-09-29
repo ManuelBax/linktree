@@ -12,12 +12,17 @@
     "url": "https://pin.it/70R3Ornjd"
   },
   {
-    "title": "🎧 Ascolta",
+    "title": "Listen🎧",
     "url": "https://music.youtube.com/playlist?list=PLF199f_2PLxE"
   },
   {
-    "title": "💡 Scrivimi per idee luminose",
-    "url": "mailto:baccimanuel01@gmail.com?subject=Ho%20un'idea%20luminosa",
-    "class": "btn-mail"
+    "title": "Usciamo?🌃",
+    "type": "outing"
+  },
+  {
+    "title": "Manda una mail",
+    "type": "mail",
+    "email": "baccimanuel01@gmail.com",
+    "subject": "Veni, vidi..ti scrivo"
   }
 ]

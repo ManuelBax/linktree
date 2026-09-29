@@ -1,18 +1,18 @@
 /* =========================================
-   1. VARIABILI: i colori li cambi tutti da qui
+   variabili CSS
    ========================================= */
 :root {
-  --bg: #0b0b1a;                         /* sfondo scuro */
-  --text: #f2f2f7;                       /* testo principale */
-  --text-soft: #a9a9c2;                  /* testo secondario (bio) */
-  --accent: #7c5cff;                     /* colore principale (viola) */
-  --btn-bg: rgba(255, 255, 255, 0.08);   /* pulsante semi-trasparente */
+  --bg: #0b0b1a; /* sfondo */
+  --text: #f2f2f7; /* testo principale */
+  --text-soft: #a9a9c2;/* testo secondario (bio) */
+  --accent: #7c5cff; /*colore principale*/
+  --btn-bg: rgba(255, 255, 255, 0.08);/* pulsante semitrasparente */
   --btn-border: rgba(255, 255, 255, 0.15);
-  --radius: 999px;                       /* bordi "a pillola" */
+  --radius: 999px;/* bordi a pillola */
 }
 
 /* =========================================
-   2. RESET: tolgo i margini di default del browser
+   reset margini e padding, box-sizing
    ========================================= */
 * {
   margin: 0;
@@ -21,41 +21,43 @@
 }
 
 /* =========================================
-   3. PAGINA
+   pagina, sfondo e font
    ========================================= */
 body {
-  min-height: 100vh;        /* almeno alta quanto lo schermo */
-  min-height: 100dvh;       /* versione corretta per i telefoni (barra del browser) */
-  display: flex;            /* flexbox per centrare */
-  justify-content: center;  /* centro orizzontale */
-  align-items: center;      /* centro verticale */
-  padding: 40px 16px;       /* respiro ai bordi, soprattutto su mobile */
+  min-height: 100vh;       
+  min-height: 100dvh;/* versione corretta per i telefoni/ browser */
+  display: flex;
+  flex-direction: column;/* card e footer uno sotto l'altro */
+  justify-content: center;
+  align-items: center;
+  padding: 40px 16px;       /* spaziatura bordi*/
   background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 /* =========================================
-   4. CARD: la colonna centrale
+   card
    ========================================= */
 .card {
   width: 100%;
-  max-width: 420px;          /* su PC non si allarga troppo */
+  max-width: 420px;/* su PC non si allarga troppo */
+  margin-block: auto;
   display: flex;
-  flex-direction: column;    /* elementi uno sotto l'altro */
+  flex-direction: column;/* elementi uno sotto l'altro */
   align-items: center;
   text-align: center;
 }
 
 /* =========================================
-   5. AVATAR ROTONDO
+   immagine profilo e bio
    ========================================= */
 .avatar {
   width: 128px;
   height: 128px;
-  border-radius: 50%;          /* cerchio */
-  object-fit: cover;           /* riempie il cerchio senza deformare la foto */
-  object-position: center 30%; /* sposta l'inquadratura verso il viso */
+  border-radius: 50%; /* cerchio */
+  object-fit: cover; /* riempie il cerchio senza deformare la foto */
+  object-position: center 30%;/* sposta l'inquadratura verso il viso */
   border: 3px solid var(--accent);
   margin-bottom: 16px;
 }
@@ -71,13 +73,13 @@ h1 {
 }
 
 /* =========================================
-   6. LISTA DEI PULSANTI
+   lista pulsanti
    ========================================= */
 .links {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 14px;                 /* spazio tra un pulsante e l'altro */
+  gap: 14px;/* spazio tra un pulsante e l'altro */
 }
 
 .btn {
@@ -87,12 +89,14 @@ h1 {
   background: var(--btn-bg);
   border: 1px solid var(--btn-border);
   color: var(--text);
-  text-decoration: none;     /* tolgo la sottolineatura dei link */
+  text-decoration: none; /* toglie la sottolineatura dei link */
   font-weight: 600;
-  transition: transform 0.2s, background 0.2s;  /* rende morbidi i cambi */
+  backdrop-filter: blur(12px);          /* effetto vetro: sfoca ciò che c'è dietro */
+  -webkit-backdrop-filter: blur(12px);  /* per Safari/iPhone */
+  transition: transform 0.2s, background 0.2s;
 }
 
-/* Hover SOLO sui dispositivi con mouse: niente doppio tap su iPhone */
+/* Hover SOLO sui dispositivi con mouse, niente doppio tap su smartphone */
 @media (hover: hover) {
   .btn:hover {
     transform: translateY(-3px);
@@ -100,19 +104,46 @@ h1 {
   }
 }
 
-/* Feedback al tocco/click: vale ovunque */
+/* Feedback al tocco/click */
 .btn:active {
   transform: scale(0.97);
 }
 
-/* Navigazione da tastiera: contorno visibile */
+/* Navigazione da tastiera*/
 .btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 /* =========================================
-   7. SFONDO ANIMATO
+   bottoni veri con lo stesso stile
+   ========================================= */
+button.btn {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+/* durante l'invio il bottone è spento */
+button.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* =========================================
+   footer
+   ========================================= */
+.footer {
+  margin-top: 32px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* leggibile anche sopra i blob chiari */
+}
+
+/* =========================================
+   sfondo animato
    ========================================= */
 .bg {
   position: fixed;
@@ -132,13 +163,13 @@ h1 {
 }
 
 .blob:nth-child(1) {
-  background: #7c5cff;        /* viola */
+  background: #7c5cff; 
   top: -20%;
   left: -20%;
 }
 
 .blob:nth-child(2) {
-  background: #ff4ecd;        /* rosa */
+  background: #ff4ecd; 
   bottom: -25%;
   right: -20%;
   animation-duration: 12s;
@@ -146,7 +177,7 @@ h1 {
 }
 
 .blob:nth-child(3) {
-  background: #00c2ff;        /* azzurro */
+  background: #00c2ff;
   top: 40%;
   left: 30%;
   width: 40vmax;
@@ -162,15 +193,110 @@ h1 {
 }
 
 /* =========================================
-   8. EFFETTO VETRO SUI PULSANTI
+   finestra uscita
    ========================================= */
-.btn {
-  backdrop-filter: blur(12px);          /* sfoca ciò che c'è dietro */
-  -webkit-backdrop-filter: blur(12px);  /* per Safari/iPhone */
+.modal {
+  width: min(92vw, 420px);
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--btn-border);
+  border-radius: 24px;
+  background: rgba(20, 20, 40, 0.85);
+  color: var(--text);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overscroll-behavior: contain; /* lo scroll dentro la finestra non "passa" alla pagina */
+}
+
+.modal[open] {
+  animation: pop 0.25s ease-out;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* finestra aperta: la pagina dietro non scorre */
+html:has(.modal[open]) {
+  overflow: hidden;
+}
+
+.modal-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 48px 24px 28px; /* più spazio in alto per la × */
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-soft);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0; /* i campi possono restringersi, niente sforamenti su mobile */
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;/* 16px,su iPhone evita lo zoom automatico */
+  min-height: 48px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--text);
+  color-scheme: dark;
+}
+
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+/* messaggio "inviato / errore" sotto il bottone */
+.modal-status {
+  min-height: 1.2em; /* lo spazio c'è già, la finestra non "salta" */
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-soft);
 }
 
 /* =========================================
-   9. ACCESSIBILITÀ: chi ha disattivato le animazioni
+   accessibilità:chi ha disattivato le animazioni
       nel sistema operativo non le vede
    ========================================= */
 @media (prefers-reduced-motion: reduce) {
