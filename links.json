@@ -1,9 +1,5 @@
 [
   {
-    "title": "LinkedIn",
-    "url": "https://open.spotify.com/playlist/77Zqxfy5PyU81vZyH0wUuG?si=mV4Y1DcVRqSGgAEy9INwoA"
-  },
-  {
     "title": "GitHub",
     "url": "https://github.com/ManuelBax"
   },
@@ -12,17 +8,11 @@
     "url": "https://pin.it/70R3Ornjd"
   },
   {
-    "title": "Listen🎧",
-    "url": "https://music.youtube.com/playlist?list=PLF199f_2PLxE"
+    "title": "Spotify🎧",
+    "url": "https://open.spotify.com/playlist/77Zqxfy5PyU81vZyH0wUuG?si=mV4Y1DcVRqSGgAEy9INwoA"
   },
   {
     "title": "Uscita🌃",
     "type": "outing"
-  },
-  {
-    "title": "Manda una mail",
-    "type": "mail",
-    "email": "baccimanuel01@gmail.com",
-    "subject": "Veni, vidi..ti scrivo"
   }
 ]
